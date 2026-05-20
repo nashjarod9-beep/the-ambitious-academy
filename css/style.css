@@ -2605,3 +2605,26 @@ body.preloader-active {
     width: 100%;
   }
 }
+
+/* Responsive Grid for Screenshots Section */
+.testimonials-grid-captures {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+@media (max-width: 900px) {
+  .testimonials-grid-captures {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+    display: grid !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .testimonials-grid-captures {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    display: grid !important;
+  }
+}
