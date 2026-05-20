@@ -2606,7 +2606,7 @@ body.preloader-active {
   }
 }
 
-/* Responsive Grid for Screenshots Section */
+/* Responsive Grid & Premium Mobile Carousels */
 .testimonials-grid-captures {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2621,10 +2621,60 @@ body.preloader-active {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 768px) {
+  /* Image testimonials carousel ("Ceux qui ont fait le premier pas") */
   .testimonials-grid-captures {
-    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
     gap: 16px !important;
-    display: grid !important;
+    padding: 12px 24px !important;
+    margin: 0 -24px 30px -24px !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+  
+  .testimonials-grid-captures::-webkit-scrollbar {
+    display: none !important;
+  }
+  
+  .testimonials-grid-captures .testimonial-card {
+    flex: 0 0 78% !important;
+    max-width: 290px !important;
+    scroll-snap-align: center !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  /* Text reviews carousel ("85 % d'avis positifs certifiés") */
+  #temoignages-avis .grid-3 {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 16px !important;
+    padding: 12px 24px !important;
+    margin: 0 -24px 30px -24px !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    align-items: stretch !important;
+  }
+  
+  #temoignages-avis .grid-3::-webkit-scrollbar {
+    display: none !important;
+  }
+  
+  #temoignages-avis .grid-3 .testimonial-card {
+    flex: 0 0 85% !important;
+    max-width: 320px !important;
+    scroll-snap-align: center !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
   }
 }
