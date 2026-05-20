@@ -376,4 +376,62 @@ document.addEventListener('DOMContentLoaded', () => {
     animateParticles();
   };
   initHeroParticles();
+
+  // --- INITIATE LUXURY PRELOADER ---
+  const initLuxuryPreloader = () => {
+    const preloader = document.getElementById('luxury-preloader');
+    if (!preloader) return;
+
+    document.body.classList.add('preloader-active');
+
+    const fadeOutPreloader = () => {
+      preloader.classList.add('fade-out');
+      setTimeout(() => {
+        preloader.style.display = 'none';
+        document.body.classList.remove('preloader-active');
+      }, 1000);
+    };
+
+    // Since DOMContentLoaded is already active, we check if page fully loaded
+    if (document.readyState === 'complete') {
+      setTimeout(fadeOutPreloader, 1800);
+    } else {
+      window.addEventListener('load', () => {
+        setTimeout(fadeOutPreloader, 1800);
+      });
+    }
+
+    // Safety Fallback (4s max)
+    setTimeout(() => {
+      if (!preloader.classList.contains('fade-out')) {
+        fadeOutPreloader();
+      }
+    }, 4000);
+  };
+  initLuxuryPreloader();
+
+  // --- INITIATE MAGNETIC BUTTONS ---
+  const initMagneticButtons = () => {
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (isTouchDevice || window.innerWidth < 1024) return;
+
+    const magneticElements = document.querySelectorAll('.cta-primary, .cta-mega, .nav-cta');
+    
+    magneticElements.forEach(el => {
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        el.style.transform = `translate3d(${x * 0.3}px, ${y * 0.3}px, 0) scale(1.02)`;
+        el.style.transition = 'transform 0.08s ease-out';
+      });
+      
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = '';
+        el.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+      });
+    });
+  };
+  initMagneticButtons();
 });
